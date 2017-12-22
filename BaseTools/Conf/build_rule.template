@@ -207,6 +207,24 @@
         # For RVCTCYGWIN ASM_FLAGS must be first to work around pathing issues
         "$(ASM)" $(ASM_FLAGS) -o ${dst} $(INC) ${d_path}(+)${s_base}.iii
 
+#
+# Assembly build rule for MSFT AARCH64
+#
+[Assembly-Code-File.COMMON.AARCH64]
+    <InputFile.MSFT>
+        ?.asm, ?.Asm, ?.ASM
+
+    <ExtraDependency>
+        $(MAKE_FILE)
+
+    <OutputFile>
+        $(OUTPUT_DIR)(+)${s_dir}(+)${s_base}.obj
+
+    <Command.MSFT>
+        "$(PP)" $(PP_FLAGS) $(INC) ${src} > ${d_path}(+)${s_base}.i
+        Trim --source-code --trim-long -o ${d_path}(+)${s_base}.iii ${d_path}(+)${s_base}.i
+        "$(ASM)" -o${dst} $(ASM_FLAGS) -I${s_path} $(INC) ${d_path}(+)${s_base}.iii
+
 [Nasm-Assembly-Code-File.COMMON.COMMON]
     <InputFile>
         ?.nasm
