@@ -601,7 +601,29 @@ struct _LIST_ENTRY {
 **/
 #define _INT_SIZE_OF(n) ((sizeof (n) + sizeof (UINTN) - 1) &~(sizeof (UINTN) - 1))
 
-#if defined(__CC_ARM)
+#if defined(_M_ARM64)
+
+  //
+  // Migrate ARM64 VA_LIST definition from \VC\Tools\MSVC\14.12.25827\include\varargs.h & vadefs.h
+  //
+  typedef CHAR8 *VA_LIST;
+
+  #define _ADDRESSOF(v)           (&(v))
+  #define _VA_ALIGN               8
+  #define _SLOTSIZEOF(TYPE)       ((sizeof(TYPE) + _VA_ALIGN - 1) & ~(_VA_ALIGN - 1))
+  #define _APALIGN(TYPE, Marker)  (((VA_LIST)0 - (Marker)) & (__alignof(TYPE) - 1))
+  
+  void __cdecl __va_start(VA_LIST*, ...);
+
+  #define VA_START(ap,v)        ((void)(__va_start(&ap, _ADDRESSOF(v), _SLOTSIZEOF(v), __alignof(v), _ADDRESSOF(v))))
+  #define VA_ARG(Marker, TYPE)                                                                        \
+                                ((sizeof(TYPE) > (2 * sizeof(UINTN)))                                 \
+                                ? **(TYPE**)((Marker += sizeof(UINTN)) - sizeof(UINTN))               \
+                                : *(TYPE*)((Marker += _SLOTSIZEOF(TYPE) + _APALIGN(TYPE, Marker)) - _SLOTSIZEOF(TYPE)))
+  #define VA_END(Marker)        ((void)(Marker = (VA_LIST)0))
+  #define VA_COPY(Dest, Start)  ((void)((Dest) = (Start)))
+
+#elif defined(__CC_ARM)
 //
 // RVCT ARM variable argument list support.
 //

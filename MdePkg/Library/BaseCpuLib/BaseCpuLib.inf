@@ -71,6 +71,8 @@
 [Sources.AARCH64]
   AArch64/CpuFlushTlb.S | GCC
   AArch64/CpuSleep.S    | GCC
+  AArch64/CpuFlushTlb.asm | MSFT
+  AArch64/CpuSleep.asm    | MSFT
 
 [Packages]
   MdePkg/MdePkg.dec

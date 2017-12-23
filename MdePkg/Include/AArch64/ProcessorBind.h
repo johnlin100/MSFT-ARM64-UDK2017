@@ -108,7 +108,11 @@ typedef INT64   INTN;
 /// Page allocation granularity for AARCH64
 ///
 #define DEFAULT_PAGE_ALLOCATION_GRANULARITY   (0x1000)
+#if defined(_M_ARM64)
+#define RUNTIME_PAGE_ALLOCATION_GRANULARITY   (0x1000)   // Modify from 0x10000 to 0x1000 in MSFT because section alignment is not allowed for 64K in VS2017 link tool.
+#else
 #define RUNTIME_PAGE_ALLOCATION_GRANULARITY   (0x10000)
+#endif
 
 //
 // Modifier to ensure that all protocol member functions and EFI intrinsics

@@ -32,6 +32,7 @@
 [Sources]
   BaseStackCheckGcc.c | GCC
   BaseStackCheckGcc.c | RVCT
+  BaseStackCheckMsft.c | MSFT
 
 [Packages]
   MdePkg/MdePkg.dec
