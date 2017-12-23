@@ -54,6 +54,8 @@
 
 #ifndef __ASSEMBLY__
 
+#pragma pack(1)
+
 struct fdt_header {
 	fdt32_t magic;			 /* magic word FDT_MAGIC */
 	fdt32_t totalsize;		 /* total size of DT block */
@@ -89,6 +91,8 @@ struct fdt_property {
 	fdt32_t nameoff;
 	char data[0];
 };
+
+#pragma pack()
 
 #endif /* !__ASSEMBLY */
 

@@ -597,7 +597,7 @@ ProtectUefiImage (
   //
   // CPU ARCH present. Update memory attribute directly.
   //
-  SetUefiImageProtectionAttributes (ImageRecord);
+  //SetUefiImageProtectionAttributes (ImageRecord);  // @WA: Disable Image memory protection because system hang when calling AllocatePage() during image load pahse.
 
   //
   // Record the image record in the list so we can undo the protections later

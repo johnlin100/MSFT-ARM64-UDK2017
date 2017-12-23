@@ -60,6 +60,7 @@
 [Sources.AARCH64]
   AArch64/EbcSupport.c
   AArch64/EbcLowLevel.S
+  AArch64/EbcLowLevel.asm
 
 [Packages]
   MdePkg/MdePkg.dec

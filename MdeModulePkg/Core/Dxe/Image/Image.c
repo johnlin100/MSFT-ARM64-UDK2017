@@ -553,7 +553,18 @@ CoreLoadPeImage (
                      );         
       } 
     } else {
-      if (Image->ImageContext.ImageAddress >= 0x100000 || Image->ImageContext.RelocationsStripped) {
+      if (Image->ImageContext.ImageAddress >= 0x100000000ULL && !Image->ImageContext.RelocationsStripped) {
+        //
+        // Update to remove Convert Memory Attribute Failed debug message during Image load
+        // because link flag can't be assigned image base address below 4GB in ARM64 architecture by VS2017 link.exe (14.12.25827)
+        //
+        Status = CoreAllocatePages (
+                   AllocateAnyPages,
+                   (EFI_MEMORY_TYPE) (Image->ImageContext.ImageCodeMemoryType),
+                   Image->NumberOfPages,
+                   &Image->ImageContext.ImageAddress
+                   );
+      } else if (Image->ImageContext.ImageAddress >= 0x100000 || Image->ImageContext.RelocationsStripped) {
         Status = CoreAllocatePages (
                    AllocateAddress,
                    (EFI_MEMORY_TYPE) (Image->ImageContext.ImageCodeMemoryType),
