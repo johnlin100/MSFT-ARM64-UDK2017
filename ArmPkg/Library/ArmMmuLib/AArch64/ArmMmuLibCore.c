@@ -601,7 +601,7 @@ ArmConfigureMmu (
   }
 
   // Cover the entire GCD memory space
-  MaxAddress = (1UL << PcdGet8 (PcdPrePiCpuMemorySize)) - 1;
+  MaxAddress = (1ULL << PcdGet8 (PcdPrePiCpuMemorySize)) - 1;
 
   // Lookup the Table Level to get the information
   LookupAddresstoRootTable (MaxAddress, &T0SZ, &RootTableEntryCount);
@@ -613,7 +613,7 @@ ArmConfigureMmu (
   // UEFI should not run at EL3.
   if (ArmReadCurrentEL () == AARCH64_EL2) {
     //Note: Bits 23 and 31 are reserved(RES1) bits in TCR_EL2
-    TCR = T0SZ | (1UL << 31) | (1UL << 23) | TCR_TG0_4KB;
+    TCR = T0SZ | (1ULL << 31) | (1ULL << 23) | TCR_TG0_4KB;
 
     // Set the Physical Address Size using MaxAddress
     if (MaxAddress < SIZE_4GB) {
