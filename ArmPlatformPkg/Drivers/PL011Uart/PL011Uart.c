@@ -190,7 +190,7 @@ PL011UartInitializePort (
       return RETURN_INVALID_PARAMETER;
     }
 
-    Divisor = (UartClkInHz * 4) / *BaudRate;
+    Divisor = (UartClkInHz * 4) / (UINT32) *BaudRate;
     Integer = Divisor >> FRACTION_PART_SIZE_IN_BITS;
     Fractional = Divisor & FRACTION_PART_MASK;
   }
