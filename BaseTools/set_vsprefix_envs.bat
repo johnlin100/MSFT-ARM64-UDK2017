@@ -90,6 +90,18 @@ if defined VS140COMNTOOLS (
   )
 )
 
+if defined VS150COMNTOOLS (
+  if not defined VS2017_PREFIX (
+    set "VS2017_PREFIX=%VS150COMNTOOLS:~0,-14%"
+  )
+  if not defined WINSDK81_PREFIX (
+    set "WINSDK81_PREFIX=c:\Program Files\Windows Kits\8.1\bin\"
+  )
+  if not defined WINSDK81x86_PREFIX (
+    set "WINSDK81x86_PREFIX=c:\Program Files (x86)\Windows Kits\8.1\bin\"
+  )
+)
+
 if not defined WINDDK3790_PREFIX (
   set WINDDK3790_PREFIX=C:\WINDDK\3790.1830\bin\
 )
