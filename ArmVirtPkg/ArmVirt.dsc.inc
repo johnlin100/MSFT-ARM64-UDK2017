@@ -68,8 +68,9 @@
   #
   PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
 
-  # use the accelerated BaseMemoryLibOptDxe by default, overrides for SEC/PEI below
-  BaseMemoryLib|MdePkg/Library/BaseMemoryLibOptDxe/BaseMemoryLibOptDxe.inf
+  # use standard BaseMemoryLib instead the accelerated BaseMemoryLibOptDxe by default because not ready for MSFT ARM64.
+  # BaseMemoryLib|MdePkg/Library/BaseMemoryLibOptDxe/BaseMemoryLibOptDxe.inf
+  BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
 
   # Networking Requirements
   NetLib|MdeModulePkg/Library/DxeNetLib/DxeNetLib.inf
@@ -81,7 +82,7 @@
   # It is not possible to prevent the ARM compiler from inserting calls to intrinsic functions.
   # This library provides the instrinsic functions such a compiler may generate calls to.
   #
-  NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
+  #NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf   # Remove the intrinsic function in MSFT build
 
   # Add support for GCC stack protector
   NULL|MdePkg/Library/BaseStackCheckLib/BaseStackCheckLib.inf

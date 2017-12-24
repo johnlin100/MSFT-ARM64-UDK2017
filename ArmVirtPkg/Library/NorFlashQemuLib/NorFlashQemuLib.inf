@@ -28,3 +28,4 @@
 [Packages]
   MdePkg/MdePkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
+  ArmVirtPkg/ArmVirtPkg.dec
