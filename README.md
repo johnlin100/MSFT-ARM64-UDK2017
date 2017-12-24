@@ -73,40 +73,40 @@ The BIOS could be found in $WORKSPACE\Build\ArmVirtQemu-AARCH64\DEBUG_VS2017\FV\
     + gdb: The GNU Debugger (source code not binary)
   - After install finished, launch Cygwin.
   - GDB source is at /use/src. Run following command to build gdb (source directory name could be vary)
-    $ cd /usr/src/gdb-7.10.1-1.src
-    $ tar xf gdb-7.10.1.tar.xz
-    $ cd gdb-7.10.1
-    $ ./configure --target=aarch64-elf --pefix=/opt/aarch64-gdb
-    ........
-    ........
-    $ make
-    ........
-    ........
-    $ make install
-    ........
-    ........
+    + $ cd /usr/src/gdb-7.10.1-1.src
+    + $ tar xf gdb-7.10.1.tar.xz
+    + $ cd gdb-7.10.1
+    + $ ./configure --target=aarch64-elf --pefix=/opt/aarch64-gdb
+    + ........
+    + ........
+    + $ make
+    + ........
+    + ........
+    + $ make install
+    + ........
+    + ........
   - GDB client could be installed at /opt/aarch64-gdb/bin. Launch as
-    $ cd /opt/aarch64-gdb/bin
-    $ ./aarch64-elf-gdb.exe
+    + $ cd /opt/aarch64-gdb/bin
+    + $ ./aarch64-elf-gdb.exe
 * Debug with GDB
   - Launch QEMU with -S pause the virtual machine running at start up.
   - Add CpuDeadLoop () to stop BIOS at specific point.
   - Launch GDB client and run following command
-    (gdb) target remote localhost:1234
-    warning: Can not parse XML target description; XML support was disabled at compile time
-    0x0000000000000000 in ?? ()
-    (gdb) display/20i $pc
-    1: x/20i $pc
-    => 0x0: b       0x1000
-       0x4: .inst   0xffffffff ; undefined
-       0x8: .inst   0xffffffff ; undefined
-       0xc: .inst   0xffffffff ; undefined
-       0x10:        .inst   0xffffffff ; undefined
-       0x14:        .inst   0xffffffff ; undefined
-       0x18:        .inst   0xffffffff ; undefined
-       .......
-       .......
-    (gdb)
+    + (gdb) target remote localhost:1234
+    + warning: Can not parse XML target description; XML support was disabled at compile time
+    + 0x0000000000000000 in ?? ()
+    + (gdb) display/20i $pc
+    + 1: x/20i $pc
+    + => 0x0: b       0x1000
+    +    0x4: .inst   0xffffffff ; undefined
+    +    0x8: .inst   0xffffffff ; undefined
+    +    0xc: .inst   0xffffffff ; undefined
+    +    0x10:        .inst   0xffffffff ; undefined
+    +    0x14:        .inst   0xffffffff ; undefined
+    +    0x18:        .inst   0xffffffff ; undefined
+    +    .......
+    +    .......
+    + (gdb)
   - Useful GDB Command
     + si: single step 
     + disas $pc, +0x10: disassemble starting at pc register with 16 bytes.
