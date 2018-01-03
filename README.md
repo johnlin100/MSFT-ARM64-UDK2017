@@ -28,8 +28,8 @@ Pre-requisites:
   - Microsoft ASL compiler: Available from http://www.acpi.info
 * Win 8.1 SDK: https://developer.microsoft.com/en-us/windows/downloads/windows-8-sdk
 * Visual Studio Community 2017 15.5.1 (15.5.2 or later not verified):
-  - ARM Visual C++ Compiler and Library
-  - ARM64 Visual C++ Compiler and Library
+  - Visual C++ compilers and libries for ARM
+  - Visual C++ compilers and libries for ARM64
 
 Following edk2 build process, there are two key points needs to be awared..
 1. Extract UDK2017 win32 binary file to $WORKSPACE\BaseTools\Bin
